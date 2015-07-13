@@ -1,0 +1,6 @@
+node_modules/
+.editorconfig
+.ruby-version
+.sass-cache/
+.DS_Store
+.jshintrc
