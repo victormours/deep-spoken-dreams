@@ -3,4 +3,5 @@ source 'https://rubygems.org'
 
 gem 'pocketsphinx-ruby'
 gem 'wavefile'
+gem 'spcore'
 gem 'pry'
