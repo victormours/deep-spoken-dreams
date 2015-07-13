@@ -15,26 +15,16 @@ require 'pry'
 
 Edit = Struct.new(:start, :length, :frequency_cutoff, :type, :filter_factor) do
   def apply(data)
-    frequencies = frequencies(data)
-    if type == :low_pass
-      frequencies[frequency_cutoff..-1] = frequencies[frequency_cutoff..-1].map do |frequency|
-        frequency * filter_factor
-      end
-    else
-      frequencies[0..frequency_cutoff] = frequencies[0..frequency_cutoff].map do |frequency|
-        frequency * filter_factor
-      end
+    data_segment = data[start..-1][0..length-1]
+
+    min = data_segment.min
+    max = data_segment.max
+
+    edited_data_segment = data_segment.map do |data_point|
+      (rand(max-min) + min + data_point)/2
     end
 
-    edited_data_segment = SPCore::FFT.inverse(frequencies).map(&:real).map(&:to_i)
-
     data[0..start-1] + edited_data_segment + data[start+length..-1]
-  end
-
-  private
-
-  def frequencies(data)
-    SPCore::FFT.forward(data[start..-1][0..length-1])
   end
 
 
