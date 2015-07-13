@@ -21,7 +21,7 @@ Edit = Struct.new(:start, :length, :frequency_cutoff, :type, :filter_factor) do
     max = data_segment.max
 
     edited_data_segment = data_segment.map do |data_point|
-      (rand(max-min) + min + data_point)/2
+      (rand(max-min) + min + 19*data_point)/20
     end
 
     data[0..start-1] + edited_data_segment + data[start+length..-1]
