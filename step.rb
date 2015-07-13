@@ -1,0 +1,3 @@
+require 'wavefile'
+include WaveFile
+
